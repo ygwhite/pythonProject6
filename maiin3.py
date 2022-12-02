@@ -3,7 +3,7 @@ from telebot import types
 from pars import libs, libs_image
 import requests
 from bs4 import BeautifulSoup as bs
-from sell import  selling
+
 bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
 url = 'https://store.playstation.com/en-tr/pages/browse/'
 my_link = 'https://t.me/dzinsakay'

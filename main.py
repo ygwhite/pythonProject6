@@ -1,9 +1,7 @@
 import telebot
 from telebot import types
-from pars import libs
+
 #from pay import pay
-import requests
-from bs4 import BeautifulSoup as bs
 bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
 url = 'https://store.playstation.com/en-tr/pages/browse/'
 
