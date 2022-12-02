@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup as bs
 
 from Parsing_game_link import standart_data, max_data
 from parsing import libs_image, libs
+from proxie import proxies
 from sell import selling
 
 bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
@@ -51,7 +52,7 @@ def game_search(message):
                 if game_data.lower() in key.lower():
                     i = True
                     isfound = True
-                    r = requests.get(value_link)
+                    r = requests.get(value_link, proxies=proxies)
                     soup = bs(r.text, 'lxml')
                     try:
                         name_game_ps5 = soup.find('h1',
