@@ -1,10 +1,24 @@
 
-
-
+import telebot
+from telebot import types
 import requests
 from bs4 import BeautifulSoup as bs
+from sell import selling
+from Parsing_game_link import standart_data, max_data
 
-from main2 import proxies
+bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
+url = 'https://store.playstation.com/en-tr/pages/browse/'
+my_link = 'https://t.me/dzinsakay'
+my_card = '2200700126570885'
+https_proxy = "188.0.147.102: 3128"
+http_proxy = "37.235.48.19:80"
+proxies = {
+    "http": http_proxy,
+    "https": https_proxy,
+}
+
+
+#парсинг
 
 ps_list_game = []
 ps_link_game = []
@@ -28,29 +42,7 @@ def flatten(xss):
 libs = dict(zip(ps_list_game, ps_link_game))
 libs_image = dict(zip(ps_list_game, ps_image_game))
 
-
-
-
-
-#Парсинг
-import telebot
-from telebot import types
-import requests
-from bs4 import BeautifulSoup as bs
-from sell import selling
-from Parsing_game_link import standart_data, max_data
-
-bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
-url = 'https://store.playstation.com/en-tr/pages/browse/'
-my_link = 'https://t.me/dzinsakay'
-my_card = '2200700126570885'
-https_proxy = "188.0.147.102: 3128"
-http_proxy = "37.235.48.19:80"
-proxies = {
-    "http": http_proxy,
-    "https": https_proxy,
-}
-
+#парсинг
 
 @bot.message_handler(commands=['start'])
 def start(message):
