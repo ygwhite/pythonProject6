@@ -1,6 +1,6 @@
 import telebot
 from telebot import types
-from pars import libs_image, libs
+from pars import libs
 import requests
 from bs4 import BeautifulSoup as bs
 from sell import selling
