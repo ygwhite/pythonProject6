@@ -1,10 +1,8 @@
 import requests
 from bs4 import BeautifulSoup as bs
-
-from main2 import proxies
 from sell import selling
 def max_data(url):
-    r = requests.get(url, proxies=proxies)
+    r = requests.get(url)
     soup = bs(r.text, 'lxml')
     try:
         name_max_edition = [x.text for x in soup.find_all('h3',class_='psw-t-title-s psw-t-align-c psw-fill-x psw-p-t-6 psw-p-x-7')]
