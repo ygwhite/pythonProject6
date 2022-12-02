@@ -1,8 +1,10 @@
 import requests
 from bs4 import BeautifulSoup as bs
+
+from main2 import proxies
 from sell import selling
 def max_data(url):
-    r = requests.get(url)
+    r = requests.get(url, proxies=proxies)
     soup = bs(r.text, 'lxml')
     try:
         name_max_edition = [x.text for x in soup.find_all('h3',class_='psw-t-title-s psw-t-align-c psw-fill-x psw-p-t-6 psw-p-x-7')]
@@ -19,7 +21,7 @@ def max_data(url):
         print('none')
 
 def standart_data(url):
-    r = requests.get(url)
+    r = requests.get(url, proxies=proxies)
     soup = bs(r.text, 'lxml')
     game_ps5_sell = soup.find_all('span', class_='psw-t-title-m')[0].text
     return game_ps5_sell
