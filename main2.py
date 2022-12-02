@@ -4,7 +4,8 @@ from telebot import types
 import requests
 from bs4 import BeautifulSoup as bs
 from sell import selling
-from Parsing_game_link import standart_data, max_data
+# from parsing import libs, libs_image
+# from Parsing_game_link import standart_data, max_data
 
 bot = telebot.TeleBot('5349217968:AAE8sUNG8U2fxQtPg5RaniG1Z9s7Q6tjcbc')
 url = 'https://store.playstation.com/en-tr/pages/browse/'
@@ -44,6 +45,36 @@ libs_image = dict(zip(ps_list_game, ps_image_game))
 
 #парсинг
 
+
+
+#game link
+
+
+def max_data(url):
+    r = requests.get(url, proxies=proxies)
+    soup = bs(r.text, 'lxml')
+    try:
+        name_max_edition = [x.text for x in soup.find_all('h3',class_='psw-t-title-s psw-t-align-c psw-fill-x psw-p-t-6 psw-p-x-7')]
+        sell_max_edition = []
+        for sel in soup.find_all('span', class_='psw-t-title-m')[1:]:
+            if sel.text == 'Included' or sel.text == 'Game Trial' or sel.text == 'Free':
+                continue
+            else:
+                sell_max_edition.append(selling(sel.text))
+        libs_sell_and_name = list(zip(sell_max_edition, name_max_edition))
+        max_edition_sell_and_name = max(libs_sell_and_name)
+        return max_edition_sell_and_name
+    except:
+        print('none')
+
+def standart_data(url):
+    r = requests.get(url, proxies=proxies)
+    soup = bs(r.text, 'lxml')
+    game_ps5_sell = soup.find_all('span', class_='psw-t-title-m')[0].text
+    return game_ps5_sell
+
+
+#game_link
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
